@@ -270,7 +270,7 @@ namespace Downloader
                 }
 
             }
-            catch(EndOfStreamException ex)
+            catch(EndOfStreamException)
             {
 #if DEBUG
                 Debug.WriteLine("The end of the stream is reached.");

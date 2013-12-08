@@ -47,6 +47,7 @@
             this.label_DownloadSpeed = new System.Windows.Forms.Label();
             this.checkBox_OpenListenThread = new System.Windows.Forms.CheckBox();
             this.checkBox_Prox = new System.Windows.Forms.CheckBox();
+            this.button_Credentials = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_Start
@@ -175,7 +176,7 @@
             this.textBox_Threads.Name = "textBox_Threads";
             this.textBox_Threads.Size = new System.Drawing.Size(98, 21);
             this.textBox_Threads.TabIndex = 3;
-            this.textBox_Threads.Text = "4";
+            this.textBox_Threads.Text = "2";
             // 
             // label_Blocks
             // 
@@ -210,9 +211,9 @@
             this.checkBox_OpenListenThread.AutoSize = true;
             this.checkBox_OpenListenThread.Location = new System.Drawing.Point(338, 13);
             this.checkBox_OpenListenThread.Name = "checkBox_OpenListenThread";
-            this.checkBox_OpenListenThread.Size = new System.Drawing.Size(168, 16);
+            this.checkBox_OpenListenThread.Size = new System.Drawing.Size(96, 16);
             this.checkBox_OpenListenThread.TabIndex = 11;
-            this.checkBox_OpenListenThread.Text = "开启帮助其主机下载的线程";
+            this.checkBox_OpenListenThread.Text = "开启协助线程";
             this.checkBox_OpenListenThread.UseVisualStyleBackColor = true;
             this.checkBox_OpenListenThread.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -227,12 +228,23 @@
             this.checkBox_Prox.UseVisualStyleBackColor = true;
             this.checkBox_Prox.CheckedChanged += new System.EventHandler(this.checkBox_Prox_CheckedChanged);
             // 
+            // button_Credentials
+            // 
+            this.button_Credentials.Location = new System.Drawing.Point(464, 9);
+            this.button_Credentials.Name = "button_Credentials";
+            this.button_Credentials.Size = new System.Drawing.Size(98, 23);
+            this.button_Credentials.TabIndex = 13;
+            this.button_Credentials.Text = "服务器认证信息";
+            this.button_Credentials.UseVisualStyleBackColor = true;
+            this.button_Credentials.Click += new System.EventHandler(this.button_Credentials_Click);
+            // 
             // Form_Download
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_Stop;
             this.ClientSize = new System.Drawing.Size(574, 337);
+            this.Controls.Add(this.button_Credentials);
             this.Controls.Add(this.checkBox_Prox);
             this.Controls.Add(this.checkBox_OpenListenThread);
             this.Controls.Add(this.label_DownloadSpeed);
@@ -283,6 +295,7 @@
         private System.Windows.Forms.Label label_DownloadSpeed;
         private System.Windows.Forms.CheckBox checkBox_OpenListenThread;
         private System.Windows.Forms.CheckBox checkBox_Prox;
+        private System.Windows.Forms.Button button_Credentials;
     }
 }
 

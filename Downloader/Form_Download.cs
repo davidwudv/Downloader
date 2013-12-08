@@ -22,6 +22,8 @@ namespace Downloader
         private Thread updateProgressThread;
         private List<Thread> HelpDownloadThreadList;
         public List<IPAddress> OtherMachineIP;
+        private string ServerUserName;
+        private string ServerPassword;
 #if DEBUG
         private delegate void OutPutDelegate(string output);
         OutPutDelegate OutPutPrint;
@@ -68,6 +70,11 @@ namespace Downloader
                 else
                     threads = 1 + listBox_IPList.Items.Count;
                 myTaskConfig = new TaskConfig(new Uri(textBox_Url.Text), threads);
+                if (ServerPassword != null && ServerUserName != null && ServerPassword.Length > 0 && ServerUserName.Length > 0)
+                {
+                    myTaskConfig.UserName = ServerUserName;
+                    myTaskConfig.Password = ServerPassword;
+                }
                 myTaskConfig.InitConfig();
             }
             downloadTask = new DownloadTask(textBox_Path.Text, myTaskConfig, this);
@@ -213,8 +220,6 @@ namespace Downloader
 
         /// <summary>
         /// 启动协助下载监听线程
-        /// 考虑到带宽限制的问题，每台主机同一时刻只能帮助一台其他主机下载。
-        /// 否则，如果同时帮助几台主机下载的话，就会超级慢了，本来带宽已经很少了。
         /// </summary>
         private void ListenDownload()
         {
@@ -418,6 +423,21 @@ namespace Downloader
             int index;
             if ((index = textBox_Url.Text.LastIndexOf('/')) > 0)
                 textBox_Path.Text = @"D:\" + textBox_Url.Text.Substring(index + 1);
+        }
+
+        private void button_Credentials_Click(object sender, EventArgs e)
+        {
+            Form_Credentials fc = new Form_Credentials();
+            if (ServerUserName != null && ServerPassword != null)
+            {
+                fc.UserName = ServerUserName;
+                fc.Password = ServerPassword;
+            }
+            if (fc.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ServerUserName = fc.UserName;
+                ServerPassword = fc.Password;
+            }
         }
         
 

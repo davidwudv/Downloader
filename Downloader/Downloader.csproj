@@ -77,6 +77,12 @@
   <ItemGroup>
     <Compile Include="DownloadBase.cs" />
     <Compile Include="DownloadTask.cs" />
+    <Compile Include="Form_Credentials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Credentials.Designer.cs">
+      <DependentUpon>Form_Credentials.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Download.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaskConfig.cs" />
+    <EmbeddedResource Include="Form_Credentials.resx">
+      <DependentUpon>Form_Credentials.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Download.resx">
       <DependentUpon>Form_Download.cs</DependentUpon>
     </EmbeddedResource>
