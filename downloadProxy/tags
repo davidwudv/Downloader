@@ -1,0 +1,145 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Accept	Server.cpp	/^void Server::Accept()\/\/若成功则返回非负描述符，若出错返回-1$/;"	f	class:Server	signature:()
+Accept	Server.h	/^		void Accept();$/;"	p	class:Server	access:public	signature:()
+Accept	Socket.cpp	/^Socket Socket::Accept()$/;"	f	class:Socket	signature:()
+Accept	Socket.h	/^		Socket Accept();$/;"	p	class:Socket	access:public	signature:()
+BUFFSIZE	main.cpp	24;"	d	file:
+Bind	Server.cpp	/^void Server::Bind()\/\/成功返回0,出错返回-1$/;"	f	class:Server	signature:()
+Bind	Server.h	/^		void Bind();\/\/成功返回0,出错返回-1$/;"	p	class:Server	access:public	signature:()
+Bind	Socket.cpp	/^void Socket::Bind(IPAddress *address)$/;"	f	class:Socket	signature:(IPAddress *address)
+Bind	Socket.h	/^		void Bind(IPAddress *address);$/;"	p	class:Socket	access:public	signature:(IPAddress *address)
+Close	Server.cpp	/^void Server::Close()$/;"	f	class:Server	signature:()
+Close	Server.h	/^		virtual void Close();$/;"	p	class:Server	access:public	signature:()
+Close	Socket.cpp	/^void Socket::Close()$/;"	f	class:Socket	signature:()
+Close	Socket.h	/^		void Close();$/;"	p	class:Socket	access:public	signature:()
+Connect	Socket.cpp	/^void Socket::Connect(IPAddress *address)$/;"	f	class:Socket	signature:(IPAddress *address)
+Connect	Socket.h	/^		void Connect(IPAddress *address);$/;"	p	class:Socket	access:public	signature:(IPAddress *address)
+GetAddressFamily	Socket.h	/^		int GetAddressFamily() { return addressFamily; }$/;"	f	class:Socket	access:public	signature:()
+GetClientAddress	Server.cpp	/^void Server::GetClientAddress(struct sockaddr_in *client)$/;"	f	class:Server	signature:(struct sockaddr_in *client)
+GetClientAddress	Server.h	/^		void GetClientAddress(struct sockaddr_in *client);$/;"	p	class:Server	access:public	signature:(struct sockaddr_in *client)
+GetClientIP	Socket.cpp	/^string Socket::GetClientIP()$/;"	f	class:Socket	signature:()
+GetClientIP	Socket.h	/^		string GetClientIP();$/;"	p	class:Socket	access:public	signature:()
+GetClientPort	Socket.cpp	/^in_port_t Socket::GetClientPort()$/;"	f	class:Socket	signature:()
+GetClientPort	Socket.h	/^		in_port_t GetClientPort();$/;"	p	class:Socket	access:public	signature:()
+GetLocalIP	Socket.cpp	/^string Socket::GetLocalIP()$/;"	f	class:Socket	signature:()
+GetLocalIP	Socket.h	/^		string GetLocalIP();$/;"	p	class:Socket	access:public	signature:()
+GetLocalPort	Socket.cpp	/^in_port_t Socket::GetLocalPort()$/;"	f	class:Socket	signature:()
+GetLocalPort	Socket.h	/^		in_port_t GetLocalPort();$/;"	p	class:Socket	access:public	signature:()
+GetProtocolType	Socket.h	/^		int GetProtocolType() { return protocolType; }$/;"	f	class:Socket	access:public	signature:()
+GetSocketType	Socket.h	/^		int GetSocketType() { return socketType; }$/;"	f	class:Socket	access:public	signature:()
+IPAddress	Socket.h	8;"	d
+Listen	Server.cpp	/^void Server::Listen(int backlog)\/\/成功返回0,出错返回-1$/;"	f	class:Server	signature:(int backlog)
+Listen	Server.h	/^		void Listen(int backlog);\/\/成功返回0,出错返回-1$/;"	p	class:Server	access:public	signature:(int backlog)
+Listen	Socket.cpp	/^void Socket::Listen(int backlog)$/;"	f	class:Socket	signature:(int backlog)
+Listen	Socket.h	/^		void Listen(int backlog);$/;"	p	class:Socket	access:public	signature:(int backlog)
+MAXLINE	Error.cpp	7;"	d	file:
+Receive	Socket.cpp	/^size_t Socket::Receive(char *buff, size_t bytes, int flags = 0)$/;"	f	class:Socket	signature:(char *buff, size_t bytes, int flags = 0)
+Receive	Socket.h	/^		size_t Receive(char *buff, size_t bytes, int flags);$/;"	p	class:Socket	access:public	signature:(char *buff, size_t bytes, int flags)
+SERVER_H	Server.h	2;"	d
+SOCKET_H	Socket.h	2;"	d
+Send	Socket.cpp	/^size_t Socket::Send(const char *buff, size_t bytes, int flags = 0)$/;"	f	class:Socket	signature:(const char *buff, size_t bytes, int flags = 0)
+Send	Socket.h	/^		size_t Send(const char *buff, size_t bytes, int flags);$/;"	p	class:Socket	access:public	signature:(const char *buff, size_t bytes, int flags)
+Server	Server.h	/^		Server(): listenfd(-1) { bzero(&clientAddress, sizeof(clientAddress)); }$/;"	f	class:Server	access:public	signature:()
+Server	Server.h	/^class Server: public NetworkBase$/;"	c	inherits:NetworkBase
+Server::Accept	Server.cpp	/^void Server::Accept()\/\/若成功则返回非负描述符，若出错返回-1$/;"	f	class:Server	signature:()
+Server::Accept	Server.h	/^		void Accept();$/;"	p	class:Server	access:public	signature:()
+Server::Bind	Server.cpp	/^void Server::Bind()\/\/成功返回0,出错返回-1$/;"	f	class:Server	signature:()
+Server::Bind	Server.h	/^		void Bind();\/\/成功返回0,出错返回-1$/;"	p	class:Server	access:public	signature:()
+Server::Close	Server.cpp	/^void Server::Close()$/;"	f	class:Server	signature:()
+Server::Close	Server.h	/^		virtual void Close();$/;"	p	class:Server	access:public	signature:()
+Server::GetClientAddress	Server.cpp	/^void Server::GetClientAddress(struct sockaddr_in *client)$/;"	f	class:Server	signature:(struct sockaddr_in *client)
+Server::GetClientAddress	Server.h	/^		void GetClientAddress(struct sockaddr_in *client);$/;"	p	class:Server	access:public	signature:(struct sockaddr_in *client)
+Server::Listen	Server.cpp	/^void Server::Listen(int backlog)\/\/成功返回0,出错返回-1$/;"	f	class:Server	signature:(int backlog)
+Server::Listen	Server.h	/^		void Listen(int backlog);\/\/成功返回0,出错返回-1$/;"	p	class:Server	access:public	signature:(int backlog)
+Server::Server	Server.h	/^		Server(): listenfd(-1) { bzero(&clientAddress, sizeof(clientAddress)); }$/;"	f	class:Server	access:public	signature:()
+Server::SetLocalAddress	Server.cpp	/^void Server::SetLocalAddress(int family, in_addr_t address, in_port_t port)$/;"	f	class:Server	signature:(int family, in_addr_t address, in_port_t port)
+Server::SetLocalAddress	Server.h	/^		void SetLocalAddress(int famliy, in_addr_t address, in_port_t port);$/;"	p	class:Server	access:public	signature:(int famliy, in_addr_t address, in_port_t port)
+Server::Socket	Server.cpp	/^void Server::Socket(int family, int type, int protocol)$/;"	f	class:Server	signature:(int family, int type, int protocol)
+Server::Socket	Server.h	/^		virtual void Socket(int family, int type, int protocol);$/;"	p	class:Server	access:public	signature:(int family, int type, int protocol)
+Server::clientAddress	Server.h	/^		struct sockaddr_in clientAddress;$/;"	m	class:Server	typeref:struct:Server::sockaddr_in	access:private
+Server::listenfd	Server.h	/^		int listenfd;$/;"	m	class:Server	access:private
+Server::~Server	Server.h	/^		virtual ~Server() { }$/;"	f	class:Server	access:public	signature:()
+SetLocalAddress	Server.cpp	/^void Server::SetLocalAddress(int family, in_addr_t address, in_port_t port)$/;"	f	class:Server	signature:(int family, in_addr_t address, in_port_t port)
+SetLocalAddress	Server.h	/^		void SetLocalAddress(int famliy, in_addr_t address, in_port_t port);$/;"	p	class:Server	access:public	signature:(int famliy, in_addr_t address, in_port_t port)
+Socket	Server.cpp	/^void Server::Socket(int family, int type, int protocol)$/;"	f	class:Server	signature:(int family, int type, int protocol)
+Socket	Server.h	/^		virtual void Socket(int family, int type, int protocol);$/;"	p	class:Server	access:public	signature:(int family, int type, int protocol)
+Socket	Socket.cpp	/^Socket::Socket():$/;"	f	class:Socket	signature:()
+Socket	Socket.cpp	/^Socket::Socket(const Socket &srcSocket)$/;"	f	class:Socket	signature:(const Socket &srcSocket)
+Socket	Socket.cpp	/^Socket::Socket(int family, int type, int protocol): $/;"	f	class:Socket	signature:(int family, int type, int protocol)
+Socket	Socket.h	/^		Socket();$/;"	p	class:Socket	access:public	signature:()
+Socket	Socket.h	/^		Socket(const Socket&);$/;"	p	class:Socket	access:public	signature:(const Socket&)
+Socket	Socket.h	/^		Socket(int family, int type, int protocol);$/;"	p	class:Socket	access:public	signature:(int family, int type, int protocol)
+Socket	Socket.h	/^class Socket$/;"	c
+Socket::Accept	Socket.cpp	/^Socket Socket::Accept()$/;"	f	class:Socket	signature:()
+Socket::Accept	Socket.h	/^		Socket Accept();$/;"	p	class:Socket	access:public	signature:()
+Socket::Bind	Socket.cpp	/^void Socket::Bind(IPAddress *address)$/;"	f	class:Socket	signature:(IPAddress *address)
+Socket::Bind	Socket.h	/^		void Bind(IPAddress *address);$/;"	p	class:Socket	access:public	signature:(IPAddress *address)
+Socket::Close	Socket.cpp	/^void Socket::Close()$/;"	f	class:Socket	signature:()
+Socket::Close	Socket.h	/^		void Close();$/;"	p	class:Socket	access:public	signature:()
+Socket::Connect	Socket.cpp	/^void Socket::Connect(IPAddress *address)$/;"	f	class:Socket	signature:(IPAddress *address)
+Socket::Connect	Socket.h	/^		void Connect(IPAddress *address);$/;"	p	class:Socket	access:public	signature:(IPAddress *address)
+Socket::GetAddressFamily	Socket.h	/^		int GetAddressFamily() { return addressFamily; }$/;"	f	class:Socket	access:public	signature:()
+Socket::GetClientIP	Socket.cpp	/^string Socket::GetClientIP()$/;"	f	class:Socket	signature:()
+Socket::GetClientIP	Socket.h	/^		string GetClientIP();$/;"	p	class:Socket	access:public	signature:()
+Socket::GetClientPort	Socket.cpp	/^in_port_t Socket::GetClientPort()$/;"	f	class:Socket	signature:()
+Socket::GetClientPort	Socket.h	/^		in_port_t GetClientPort();$/;"	p	class:Socket	access:public	signature:()
+Socket::GetLocalIP	Socket.cpp	/^string Socket::GetLocalIP()$/;"	f	class:Socket	signature:()
+Socket::GetLocalIP	Socket.h	/^		string GetLocalIP();$/;"	p	class:Socket	access:public	signature:()
+Socket::GetLocalPort	Socket.cpp	/^in_port_t Socket::GetLocalPort()$/;"	f	class:Socket	signature:()
+Socket::GetLocalPort	Socket.h	/^		in_port_t GetLocalPort();$/;"	p	class:Socket	access:public	signature:()
+Socket::GetProtocolType	Socket.h	/^		int GetProtocolType() { return protocolType; }$/;"	f	class:Socket	access:public	signature:()
+Socket::GetSocketType	Socket.h	/^		int GetSocketType() { return socketType; }$/;"	f	class:Socket	access:public	signature:()
+Socket::Listen	Socket.cpp	/^void Socket::Listen(int backlog)$/;"	f	class:Socket	signature:(int backlog)
+Socket::Listen	Socket.h	/^		void Listen(int backlog);$/;"	p	class:Socket	access:public	signature:(int backlog)
+Socket::Receive	Socket.cpp	/^size_t Socket::Receive(char *buff, size_t bytes, int flags = 0)$/;"	f	class:Socket	signature:(char *buff, size_t bytes, int flags = 0)
+Socket::Receive	Socket.h	/^		size_t Receive(char *buff, size_t bytes, int flags);$/;"	p	class:Socket	access:public	signature:(char *buff, size_t bytes, int flags)
+Socket::Send	Socket.cpp	/^size_t Socket::Send(const char *buff, size_t bytes, int flags = 0)$/;"	f	class:Socket	signature:(const char *buff, size_t bytes, int flags = 0)
+Socket::Send	Socket.h	/^		size_t Send(const char *buff, size_t bytes, int flags);$/;"	p	class:Socket	access:public	signature:(const char *buff, size_t bytes, int flags)
+Socket::Socket	Socket.cpp	/^Socket::Socket():$/;"	f	class:Socket	signature:()
+Socket::Socket	Socket.cpp	/^Socket::Socket(const Socket &srcSocket)$/;"	f	class:Socket	signature:(const Socket &srcSocket)
+Socket::Socket	Socket.cpp	/^Socket::Socket(int family, int type, int protocol): $/;"	f	class:Socket	signature:(int family, int type, int protocol)
+Socket::Socket	Socket.h	/^		Socket();$/;"	p	class:Socket	access:public	signature:()
+Socket::Socket	Socket.h	/^		Socket(const Socket&);$/;"	p	class:Socket	access:public	signature:(const Socket&)
+Socket::Socket	Socket.h	/^		Socket(int family, int type, int protocol);$/;"	p	class:Socket	access:public	signature:(int family, int type, int protocol)
+Socket::addressFamily	Socket.h	/^		int addressFamily;$/;"	m	class:Socket	access:private
+Socket::clientAddress	Socket.h	/^		IPAddress clientAddress;$/;"	m	class:Socket	access:private
+Socket::localAddress	Socket.h	/^		IPAddress localAddress;$/;"	m	class:Socket	access:private
+Socket::operator =	Socket.cpp	/^Socket& Socket::operator=(const Socket &rhs)$/;"	f	class:Socket	signature:(const Socket &rhs)
+Socket::operator =	Socket.h	/^		Socket& operator=(const Socket&);$/;"	p	class:Socket	access:public	signature:(const Socket&)
+Socket::protocolType	Socket.h	/^		int protocolType;$/;"	m	class:Socket	access:private
+Socket::socketType	Socket.h	/^		int socketType;$/;"	m	class:Socket	access:private
+Socket::socketfd	Socket.h	/^		int socketfd;$/;"	m	class:Socket	access:public
+Socket::~Socket	Socket.cpp	/^Socket::~Socket()$/;"	f	class:Socket	signature:()
+Socket::~Socket	Socket.h	/^		virtual ~Socket();$/;"	p	class:Socket	access:public	signature:()
+addressFamily	Socket.h	/^		int addressFamily;$/;"	m	class:Socket	access:private
+clientAddress	Server.h	/^		struct sockaddr_in clientAddress;$/;"	m	class:Server	typeref:struct:Server::sockaddr_in	access:private
+clientAddress	Socket.h	/^		IPAddress clientAddress;$/;"	m	class:Socket	access:private
+err_doit	Error.cpp	/^static void	err_doit(int errnoflag, const char *fmt, va_list ap)$/;"	f	file:	signature:(int errnoflag, const char *fmt, va_list ap)
+err_doit	Error.cpp	/^static void	err_doit(int, const char *, va_list);$/;"	p	file:	signature:(int, const char *, va_list)
+err_dump	Error.cpp	/^void err_dump(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_dump	Error.h	/^void err_dump(const char *fmt, ...);$/;"	p	signature:(const char *fmt, ...)
+err_msg	Error.cpp	/^void err_msg(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_msg	Error.h	/^void err_msg(const char *fmt, ...);$/;"	p	signature:(const char *fmt, ...)
+err_quit	Error.cpp	/^void err_quit(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_quit	Error.h	/^void err_quit(const char *fmt, ...);$/;"	p	signature:(const char *fmt, ...)
+err_ret	Error.cpp	/^void err_ret(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_ret	Error.h	/^void err_ret(const char *fmt, ...);$/;"	p	signature:(const char *fmt, ...)
+err_sys	Error.cpp	/^void err_sys(const char *fmt, ...)$/;"	f	signature:(const char *fmt, ...)
+err_sys	Error.h	/^void err_sys(const char *fmt, ...);$/;"	p	signature:(const char *fmt, ...)
+listenfd	Server.h	/^		int listenfd;$/;"	m	class:Server	access:private
+localAddress	Socket.h	/^		IPAddress localAddress;$/;"	m	class:Socket	access:private
+main	main.cpp	/^int main(int argc, char **argv)$/;"	f	signature:(int argc, char **argv)
+operator =	Socket.cpp	/^Socket& Socket::operator=(const Socket &rhs)$/;"	f	class:Socket	signature:(const Socket &rhs)
+operator =	Socket.h	/^		Socket& operator=(const Socket&);$/;"	p	class:Socket	access:public	signature:(const Socket&)
+pname	Error.cpp	/^char	*pname = NULL;		\/* caller can set this from argv[0] *\/$/;"	v
+protocolType	Socket.h	/^		int protocolType;$/;"	m	class:Socket	access:private
+socketType	Socket.h	/^		int socketType;$/;"	m	class:Socket	access:private
+socketfd	Socket.h	/^		int socketfd;$/;"	m	class:Socket	access:public
+~Server	Server.h	/^		virtual ~Server() { }$/;"	f	class:Server	access:public	signature:()
+~Socket	Socket.cpp	/^Socket::~Socket()$/;"	f	class:Socket	signature:()
+~Socket	Socket.h	/^		virtual ~Socket();$/;"	p	class:Socket	access:public	signature:()
