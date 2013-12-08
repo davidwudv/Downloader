@@ -73,6 +73,7 @@
             this.textBox_Url.Size = new System.Drawing.Size(224, 21);
             this.textBox_Url.TabIndex = 1;
             this.textBox_Url.Text = "http://skype.gmw.cn/software/SkypeSetupFull.6.11.99.102.exe";
+            this.textBox_Url.TextChanged += new System.EventHandler(this.textBox_Url_TextChanged);
             // 
             // textBox_Path
             // 
@@ -251,13 +252,13 @@
             this.Controls.Add(this.progressBar_Download);
             this.Controls.Add(this.button_Stop);
             this.Controls.Add(this.button_Start);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form_Download";
             this.Text = "Download";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Download_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 
         }
 

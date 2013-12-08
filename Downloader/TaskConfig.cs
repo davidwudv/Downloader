@@ -53,6 +53,9 @@ namespace Downloader
         public long SumDownloadedSize { get; set; }//已下载的总大小
         public int BlockSum { get; private set; }//文件分块总数
         public bool SupportResume;//是否支持断点续传
+        public string Scheme;
+        public string UserName;
+        public string Password;
         public List<FileBlock> BlockList;
 
 
@@ -64,41 +67,78 @@ namespace Downloader
             BlockList = new List<FileBlock>();
         }
 
-        public TaskConfig(string link, int threadSum)
+        public TaskConfig(Uri link, int threadSum)
         {
-            Link = link;
-            int index = link.LastIndexOf('/') + 1;
-            FileName = link.Substring(index);
-            BlockSum = threadSum;
+            Link = link.AbsoluteUri;
+            Scheme = link.Scheme;
+            int index = Link.LastIndexOf('/') + 1;
+            FileName = Link.Substring(index);
             SupportResume = true;
+            UserName = "anonymous";
+            Password = "anonymous";
             BlockList = new List<FileBlock>();
+
+            //在支持FTP多线程下载后，此处代码需要修改
+            if (Scheme == "ftp")
+                BlockSum = 1;
+            else
+                BlockSum = threadSum;
         }
 
         public bool InitConfig()
         {
-        begin:
-            HttpWebRequest httpRequest = null;
-            HttpWebResponse httpResponse = null;
+            WebRequest webRequest = null;
+            WebResponse webResponse = null;
             try
             {
-                httpRequest = (HttpWebRequest)WebRequest.Create(Link);
-                httpRequest.Method = "HEAD";
-                httpRequest.KeepAlive = false;
-                if (SupportResume)
-                    httpRequest.AddRange(100);
-                httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                switch (Scheme)
                 {
-                    FileLength = (long)httpResponse.ContentLength;
-                    InitBlockInfo();
-                }
-                else if ((int)httpResponse.StatusCode >= 400)
-                    return false;
-                else
-                {
-                    SupportResume = false;
-                    BlockSum = 1;
-                    goto begin;
+                    case "http":
+                        {
+                            #region http
+                        httpAgain:
+                            webRequest = WebRequest.Create(Link);
+                            HttpWebRequest httpRequest = (HttpWebRequest)webRequest;
+                            httpRequest.Method = "HEAD";
+                            httpRequest.KeepAlive = false;
+                            if (SupportResume)
+                                httpRequest.AddRange(100);
+                            webResponse = httpRequest.GetResponse();
+                            HttpWebResponse httpResponse = (HttpWebResponse)webResponse;
+                            if (httpResponse.StatusCode == HttpStatusCode.OK)
+                            {
+                                FileLength = (long)httpResponse.ContentLength;
+                                InitBlockInfo();
+                            }
+                            else if ((int)httpResponse.StatusCode >= 400)
+                                return false;
+                            else
+                            {
+                                SupportResume = false;
+                                BlockSum = 1;
+                                goto httpAgain;
+                            }
+                            break;
+                            #endregion
+                        }
+                    case "ftp":
+                        {
+                            webRequest = WebRequest.Create(Link);
+                            FtpWebRequest ftpRequest = (FtpWebRequest)webRequest;
+                            ftpRequest.Credentials = new NetworkCredential(UserName, Password);
+                            webResponse = ftpRequest.GetResponse();
+                            FtpWebResponse ftpResponse = (FtpWebResponse)webResponse;
+                            if (ftpResponse.StatusCode == FtpStatusCode.CommandOK || ftpResponse.StatusCode == FtpStatusCode.OpeningData
+                                || ftpResponse.StatusCode == FtpStatusCode.DataAlreadyOpen || ftpResponse.StatusCode == FtpStatusCode.FileActionOK)
+                            {
+                                FileLength = (long)ftpResponse.ContentLength;
+                                InitBlockInfo();
+                            }
+                            else
+                                return false;
+
+                            break;
+                        }
                 }
             }
             catch (WebException e)
@@ -111,8 +151,8 @@ namespace Downloader
             }
             finally
             {
-                if (httpResponse != null)
-                    httpResponse.Close();
+                if (webResponse != null)
+                    webResponse.Close();
             }
             return true;
         }
@@ -162,6 +202,9 @@ namespace Downloader
                 binaryWriter.Write(this.SumDownloadedSize);
                 binaryWriter.Write(this.BlockSum);
                 binaryWriter.Write(this.SupportResume);
+                binaryWriter.Write(this.Scheme);
+                binaryWriter.Write(this.UserName);
+                binaryWriter.Write(this.Password);
 
                 foreach (var item in BlockList)
                 {
@@ -211,6 +254,10 @@ namespace Downloader
                 SumDownloadedSize = binaryReader.ReadInt64();
                 BlockSum = binaryReader.ReadInt32();
                 SupportResume = binaryReader.ReadBoolean();
+                Scheme = binaryReader.ReadString();
+                UserName = binaryReader.ReadString();
+                Password = binaryReader.ReadString();
+
                 for (int i = 0; i < BlockSum; ++i)
                 {
                     FileBlock block = new FileBlock();

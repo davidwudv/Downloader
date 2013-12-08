@@ -94,46 +94,60 @@ namespace Downloader
         public void DeleteConfig() { File.Delete(SavePath + ".conf"); }//删除配置文件
         public void SetStop() { State = DownloadState.Stop; }
 
+        /// <summary>
+        /// 此处代码应该使用多态性优化，由于时间问题，暂时不搞了。-----2013.12.8/吴德伟
+        /// </summary>
         public void Start()
         {
-            int threadsSum = Config.BlockSum;
-            int i = 0;
-            HttpDownload download = null;
-            Thread downloadThread = null;
-            if (MasterForm.OtherMachineIP.Count > 0)
+            switch (Config.Scheme)
             {
-                foreach (var item in MasterForm.OtherMachineIP)
-                {
-                    download = new HttpDownload(this, i);
-                    downloadThread = new Thread(download.StartEx) { IsBackground = true };
-                    ThreadList.Add(downloadThread);
-                    downloadThread.Start(item);
-                    #if DEBUG
-                MasterForm.Invoke(OutPutPrint, String.Format("Thread {0} start!",i.ToString()));
-#endif
-                    ++i;
-                    ++CurrentThreads;
-                }
-            }
-            int surplusBlock = threadsSum - i;//发送给协助主机后还剩余的文件块数
-            for (; i < threadsSum; ++i)
-            {
-                download = new HttpDownload(this, i);
-                //if (surplusBlock > 2)
-                //{
-                    downloadThread = new Thread(download.StartEx) { IsBackground = true };
-                    downloadThread.Start(null);
-                //}
-                //else
-                //{
-                //    downloadThread = new Thread(download.Start) { IsBackground = true };
-                //    downloadThread.Start();
-                //}
-                ThreadList.Add(downloadThread);
-                ++CurrentThreads;
+                case "http":
+                    {
+                        int threadsSum = Config.BlockSum;
+                        int i = 0;
+                        HttpDownload download = null;
+                        Thread downloadThread = null;
+                        if (MasterForm.OtherMachineIP.Count > 0)
+                        {
+                            foreach (var item in MasterForm.OtherMachineIP)
+                            {
+                                download = new HttpDownload(this, i);
+                                downloadThread = new Thread(download.StartEx) { IsBackground = true };
+                                ThreadList.Add(downloadThread);
+                                downloadThread.Start(item);
 #if DEBUG
-                MasterForm.Invoke(OutPutPrint, String.Format("Thread {0} start!",i.ToString()));
+                                MasterForm.Invoke(OutPutPrint, String.Format("Thread {0} start!", i.ToString()));
 #endif
+                                ++i;
+                                ++CurrentThreads;
+                            }
+                        }
+                        int surplusBlock = threadsSum - i;//发送给协助主机后还剩余的文件块数
+                        for (; i < threadsSum; ++i)
+                        {
+                            download = new HttpDownload(this, i);
+                            downloadThread = new Thread(download.StartEx) { IsBackground = true };
+                            downloadThread.Start(null);
+                            ThreadList.Add(downloadThread);
+                            ++CurrentThreads;
+#if DEBUG
+                            MasterForm.Invoke(OutPutPrint, String.Format("Thread {0} start!", i.ToString()));
+#endif
+                        }
+                        break;
+                    }
+                case "ftp":
+                    {
+                        FtpDownload download = new FtpDownload(this, 0);
+                        Thread downloadThread = new Thread(download.Start) { IsBackground = true };
+                        ThreadList.Add(downloadThread);
+                        ++CurrentThreads;
+                        downloadThread.Start();
+#if DEBUG
+                        MasterForm.Invoke(OutPutPrint, String.Format("Thread {0} start!", 0));
+#endif
+                        break;
+                    }
             }
 
             State = DownloadState.Downloading;

@@ -8,7 +8,7 @@ namespace Downloader
 {
     public abstract class DownloadBase
     {
-        public DownloadTask downloadTask;//此线程所属的下载任务对象
+        public DownloadTask downloadTask;//当前线程所属的下载任务对象
         public int CurrentThreadIndex;//当前线程索引
         protected readonly int BufferSize;
 
@@ -20,6 +20,19 @@ namespace Downloader
         }
 
         public abstract void Start();
+        /// <summary>
+        /// 更新已下载的数据信息
+        /// </summary>
+        /// <param name="receivedSize">刚下载的字节数</param>
+        /// <param name="headSize">Response head的大小</param>
+        protected void UpdateDownloadedSize(int receivedSize, int headSize)
+        {
+            downloadTask.Config.BlockList[CurrentThreadIndex].DownloadedSize += (receivedSize - headSize);//更新本分块已下载的大小
+            downloadTask.Config.SumDownloadedSize += (receivedSize - headSize);//更行已下载的总大小
+            if (downloadTask.Config.SumDownloadedSize == downloadTask.Config.FileLength)
+                downloadTask.State = DownloadState.Completed;//下载完成
+            downloadTask.DownloadProgress = 100 * ((double)downloadTask.Config.SumDownloadedSize / downloadTask.Config.FileLength);
+        }
     }
 
     //public enum DownloadProtocol

@@ -14,7 +14,8 @@ namespace Downloader
     {
         private string Referer;//重定向的源地址
 
-        public HttpDownload(DownloadTask downloadTask, int currentThreadIndex): base(downloadTask, currentThreadIndex)
+        public HttpDownload(DownloadTask downloadTask, int currentThreadIndex)
+            : base(downloadTask, currentThreadIndex)
         {
             Referer = null;
         }
@@ -279,14 +280,7 @@ namespace Downloader
             return statusCode > 0 ? true : false;
         }
 
-        private void UpdateDownloadedSize(int receivedSize, int headSize)
-        {
-            downloadTask.Config.BlockList[CurrentThreadIndex].DownloadedSize += (receivedSize - headSize);//更新本分块已下载的大小
-            downloadTask.Config.SumDownloadedSize += (receivedSize - headSize);//更行已下载的总大小
-            if (downloadTask.Config.SumDownloadedSize == downloadTask.Config.FileLength)
-                downloadTask.State = DownloadState.Completed;//下载完成
-            downloadTask.DownloadProgress = 100 * ((double)downloadTask.Config.SumDownloadedSize / downloadTask.Config.FileLength);
-        }
+        
 
     }
 }

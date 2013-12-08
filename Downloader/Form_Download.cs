@@ -67,7 +67,7 @@ namespace Downloader
                     threads = Int32.Parse(textBox_Threads.Text);
                 else
                     threads = 1 + listBox_IPList.Items.Count;
-                myTaskConfig = new TaskConfig(textBox_Url.Text, threads);
+                myTaskConfig = new TaskConfig(new Uri(textBox_Url.Text), threads);
                 myTaskConfig.InitConfig();
             }
             downloadTask = new DownloadTask(textBox_Path.Text, myTaskConfig, this);
@@ -83,6 +83,7 @@ namespace Downloader
             textBox_Path.Enabled = false;
             textBox_Threads.Enabled = false;
             textBox_Url.ReadOnly = true;
+            checkBox_Prox.Enabled = false;
         }
 
         private void button_Stop_Click(object sender, EventArgs e)
@@ -202,6 +203,7 @@ namespace Downloader
             textBox_Path.Enabled = true;
             textBox_Threads.Enabled = true;
             textBox_Url.Enabled = true;
+            checkBox_Prox.Enabled = true;
         }
 
         public void PrintToListBox(string output)
@@ -282,7 +284,7 @@ namespace Downloader
 
         again:
             Socket downloadServerSocket = null;
-            bool wantToagain = false;
+            bool wantToAgain = false;
             try
             {
                 if (strRequest.Contains("HTTP/1.1\r\n"))//HTTP协议
@@ -318,7 +320,7 @@ namespace Downloader
                 //若downloadServerSocket.Connected == true，则说明是发送帮助下载请求的主机断开连接，而不是与下载服务器的连接断开了
                 if ((e.SocketErrorCode == SocketError.ConnectionReset || e.SocketErrorCode == SocketError.TimedOut) && !downloadServerSocket.Connected && TagetMachineSocket.Connected)
                 {
-                    wantToagain = true;
+                    wantToAgain = true;
                     goto again;
                 }
 #if DEBUG
@@ -343,7 +345,7 @@ namespace Downloader
                     downloadServerSocket.Shutdown(SocketShutdown.Both);
                     downloadServerSocket.Close();
                 }
-                if (!wantToagain)
+                if (!wantToAgain)
                     TagetMachineSocket.Close();
             }
         }
@@ -409,6 +411,13 @@ namespace Downloader
                 textBox_Threads.Enabled = false;
             else
                 textBox_Threads.Enabled = true;
+        }
+
+        private void textBox_Url_TextChanged(object sender, EventArgs e)
+        {
+            int index;
+            if ((index = textBox_Url.Text.LastIndexOf('/')) > 0)
+                textBox_Path.Text = @"D:\" + textBox_Url.Text.Substring(index + 1);
         }
         
 
