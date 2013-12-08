@@ -105,7 +105,7 @@ namespace Downloader
                                 httpRequest.AddRange(100);
                             webResponse = httpRequest.GetResponse();
                             HttpWebResponse httpResponse = (HttpWebResponse)webResponse;
-                            if (httpResponse.StatusCode == HttpStatusCode.OK)
+                            if (httpResponse.StatusCode == HttpStatusCode.OK || httpResponse.StatusCode == HttpStatusCode.PartialContent)
                             {
                                 FileLength = (long)httpResponse.ContentLength;
                                 InitBlockInfo();

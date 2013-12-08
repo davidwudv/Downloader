@@ -124,6 +124,7 @@ namespace Downloader
             textBox_AddIP.Enabled = true;
             textBox_Path.Enabled = true;
             textBox_Url.ReadOnly = false;
+            checkBox_Prox.Enabled = true;
             if(!checkBox_Prox.Checked)
                 textBox_Threads.Enabled = true;
         }
